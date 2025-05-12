@@ -108,3 +108,16 @@ export const googleAuthTokens = pgTable("google_auth_tokens", {
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	updatedAt: timestamp("updated_at").notNull().defaultNow()
 });
+
+// export const integration = pgTable("integration", {
+// 	id: text("id").primaryKey(),
+// 	userId: text("user_id").notNull().references(() => user.id, { onDelete: 'cascade' }),
+// 	provider: text("provider").notNull(),
+// 	type: text("type").notNull(),
+// 	providerIdentifier: text("provider_identifier").notNull(),
+// 	name: text("name").notNull(),
+// 	picture: text("picture"),
+// 	profile: text("profile"),
+// 	createdAt: timestamp("created_at").notNull(),
+// 	updatedAt: timestamp("updated_at").notNull()
+// });
