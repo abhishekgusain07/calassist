@@ -97,3 +97,14 @@ export const feedback = pgTable("feedback", {
 	feedbackContent: text("feedback_content"),
 	stars: integer().notNull()
 })
+
+export const googleAuthTokens = pgTable("google_auth_tokens", {
+	id: text("id").primaryKey(),
+	userId: text("user_id").notNull().references(() => user.id, { onDelete: 'cascade' }),
+	accessToken: text("access_token").notNull(),
+	refreshToken: text("refresh_token").notNull(),
+	expiryDate: timestamp("expiry_date").notNull(),
+	scopes: text("scopes").notNull(),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at").notNull().defaultNow()
+});
