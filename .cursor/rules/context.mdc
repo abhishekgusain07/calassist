@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Project: Talk to Your Calendar
+A web application enabling users to connect their Google Calendar and manage it using natural language. Users can query their schedule (e.g., "What's planned for tomorrow at 4 PM?") and create or modify events (e.g., "Block next Tuesday 2-3 PM for 'Dentist'"). Built with Next.js for frontend and API routes, Neon (PostgreSQL) for the database with Drizzle ORM, and Tailwind CSS for styling.
