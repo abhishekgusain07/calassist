@@ -1,20 +1,15 @@
-"use client";
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/app/components/app-sidebar"
 
-import { ChatSidebarProvider } from "@/components/chat/chat-sidebar-provider";
-import { cn } from "@/lib/utils";
-
-export default function ChatLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden">
-      <div className="flex flex-1 overflow-hidden">
-        <ChatSidebarProvider>
+    <SidebarProvider>
+      <div className="flex h-screen w-full bg-muted/5">
+        <AppSidebar />
+        <main className="flex-1 h-full overflow-hidden relative">
           {children}
-        </ChatSidebarProvider>
+        </main>
       </div>
-    </div>
-  );
-} 
+    </SidebarProvider>
+  )
+}
