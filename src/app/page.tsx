@@ -48,6 +48,7 @@ export default function Home() {
     openFeedbackModal();
   };
 
+  // Updated features for calendar assistant
   const features: Array<{
     title: string;
     description: string;
@@ -55,41 +56,49 @@ export default function Home() {
     icon?: LucideIcon;
   }> = [
     {
-      title: "Authentication",
+      title: "Natural Language Scheduling",
       description:
-        "Complete auth system with email, social login, magic links, and MFA support for secure user management.",
-      link: "#auth",
+        "Create, modify, and query events using plain English. No more clicking through forms—just type what you want!",
+      link: "#nlp",
     },
     {
-      title: "Payments",
+      title: "Google Calendar Integration",
       description:
-        "Stripe integration with subscription management, pricing tiers, and billing portal for smooth revenue collection.",
-      link: "#payments",
+        "Securely connect your Google Calendar and manage all your events in one place.",
+      link: "#integration",
     },
     {
-      title: "Analytics",
+      title: "Instant Event Creation",
       description:
-        "Built-in analytics with PostHog and error tracking with Sentry to monitor user behavior and application health.",
-      link: "#analytics",
+        "Add events like 'Block next Tuesday 2-3 PM for Dentist' and see them appear instantly.",
+      link: "#instant",
     },
     {
-      title: "Database",
+      title: "Query Your Schedule",
       description:
-        "Serverless PostgreSQL with Neon and Drizzle ORM for type-safe database operations with automatic scaling.",
-      link: "#database",
+        "Ask questions like 'What's planned for tomorrow at 4 PM?' and get instant answers.",
+      link: "#query",
     },
     {
-      title: "UI Components",
+      title: "Privacy First",
       description:
-        "Beautiful, accessible UI components built with Radix UI and styled with Tailwind CSS for rapid development.",
-      link: "#ui",
+        "Your data is yours. We use secure authentication and never share your calendar info.",
+      link: "#privacy",
     },
     {
-      title: "Deployment",
+      title: "Works Anywhere",
       description:
-        "Optimized for deployment on Vercel with continuous integration and automatic preview deployments.",
-      link: "#deployment",
+        "Access your assistant from any device, anytime.",
+      link: "#anywhere",
     },
+  ];
+
+  // Sample chat demo block
+  const chatDemo = [
+    { role: "user", text: "Block next Tuesday 2-3 PM for 'Dentist'" },
+    { role: "assistant", text: "Event 'Dentist' created for next Tuesday, 2:00–3:00 PM." },
+    { role: "user", text: "What's planned for tomorrow at 4 PM?" },
+    { role: "assistant", text: "You have 'Team Sync' scheduled at 4:00 PM tomorrow." },
   ];
 
   return (
@@ -104,33 +113,49 @@ export default function Home() {
       />
       <NavbarDemo>
         {/* Hero Section */}
-        <section className="pt-8 pb-8 px-4 md:px-8 lg:px-16 flex flex-col items-center text-center">
+        <section className="pt-12 pb-12 px-4 md:px-8 lg:px-16 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200 leading-tight">
-            Ship Your SaaS <br />
-            <span className="inline-block mt-1 mb-2">Blazingly Fast</span>
+            Talk to Your Calendar
           </h1>
-          <p className="text-lg text-muted-foreground max-w-xl mb-6">
-            Everything you need, ready to launch.
+          <p className="text-lg text-muted-foreground max-w-2xl mb-6">
+            Connect your Google Calendar and manage your schedule using natural language. Create, modify, and query events just by chatting—no more forms, no more hassle.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/dashboard" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium text-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
-              Get Started
+            <Link href="/connect" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium text-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
+              Connect Google Calendar
+            </Link>
+            <Link href="#demo" className="bg-secondary text-foreground hover:bg-secondary/80 px-8 py-3 rounded-md font-medium text-lg border border-primary/20 transition-all">
+              See Demo
             </Link>
           </div>
         </section>
-        
+
+        {/* Sample Chat Demo */}
+        <section id="demo" className="py-8 px-4 md:px-8 lg:px-16 flex flex-col items-center">
+          <div className="w-full max-w-xl bg-background border border-muted rounded-2xl shadow-lg p-6 mb-8">
+            <h3 className="text-xl font-semibold mb-4 text-center">How it works</h3>
+            <div className="space-y-4">
+              {chatDemo.map((msg, idx) => (
+                <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div className={`rounded-xl px-4 py-2 max-w-[80%] ${msg.role === "user" ? "bg-blue-100 text-blue-900" : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"}`}>
+                    <span className="font-medium">{msg.role === "user" ? "You" : "CalAssist"}:</span> {msg.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <TechnologyUsed />
         {/* Features Section */}
         <section id="features" className="py-16 px-4 md:px-8 lg:px-16 bg-secondary/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-16">Everything You Need</h2>
+            <h2 className="text-3xl font-bold text-center mb-16">Why CalAssist?</h2>
             <HoverEffect items={features} />
           </div>
         </section>
 
-
         <ProblemSection />
-
         <SolutionSection />
         {/* Pricing Section */}
         <section className="py-16 px-4 md:px-8 lg:px-16">
@@ -140,12 +165,12 @@ export default function Home() {
         {/* CTA Section */}
         <section className="py-16 px-4 md:px-8 lg:px-16 bg-primary/5">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
+            <h2 className="text-3xl font-bold mb-6">Ready to Take Control of Your Calendar?</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Launch your SaaS in record time with our production-ready template.
+              Connect your Google Calendar and start managing your schedule with AI-powered natural language.
             </p>
-            <Link href="/sign-up" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium inline-block">
-              Start Building Now
+            <Link href="/connect" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium inline-block">
+              Get Started Free
             </Link>
           </div>
         </section>
