@@ -153,26 +153,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* New concise technology section */}
-        <section className="bg-background/50 backdrop-blur-sm py-10 border-t border-b border-slate-100 dark:border-slate-800">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary/90 to-primary">Built with Modern Tech</h2>
-            </div>
-            <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-12">
-              {techStack.map((tech, idx) => (
-                <div key={idx} className="filter grayscale hover:grayscale-0 hover:brightness-110 transition-all duration-300">
-                  <img
-                    className="h-12 w-fit max-w-28 transition-transform duration-300 hover:scale-110 rounded-md"
-                    alt={tech.name}
-                    width="auto"
-                    src={tech.logo}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Features Section */}
         <section id="features" className="py-16 px-4 md:px-8 lg:px-16 bg-secondary/20">
