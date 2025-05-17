@@ -4,10 +4,7 @@ import { NavbarDemo } from "@/components/navbar";
 import Pricing from "@/components/pricing";
 import Image from "next/image";
 import Link from "next/link";
-import ProblemSection from "./components/problem";
-import SolutionSection from "./components/solution";
 import Footer from "./components/footer";
-import TechnologyUsed from "./components/techused";
 import Announcement from "./components/announcement";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import type { LucideIcon } from "lucide-react";
@@ -101,6 +98,16 @@ export default function Home() {
     { role: "assistant", text: "You have 'Team Sync' scheduled at 4:00 PM tomorrow." },
   ];
 
+  // New concise technology section
+  const techStack = [
+    { name: "Next.js", logo: "/nextjs.svg" },
+    { name: "React", logo: "/react.svg" },
+    { name: "Google Calendar API", logo: "/google-calendar.svg" },
+    { name: "Neon (Postgres)", logo: "https://res.cloudinary.com/dowiygzq3/image/upload/v1741087611/neon-logomark-dark-color_1_bzq0v2.svg" },
+    { name: "Drizzle ORM", logo: "https://res.cloudinary.com/dowiygzq3/image/upload/v1741087634/108468352_rdoifc.png" },
+    { name: "Tailwind CSS", logo: "/tailwindcss.svg" },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Announcement 
@@ -146,7 +153,27 @@ export default function Home() {
           </div>
         </section>
 
-        <TechnologyUsed />
+        {/* New concise technology section */}
+        <section className="bg-background/50 backdrop-blur-sm py-10 border-t border-b border-slate-100 dark:border-slate-800">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary/90 to-primary">Built with Modern Tech</h2>
+            </div>
+            <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:gap-x-12">
+              {techStack.map((tech, idx) => (
+                <div key={idx} className="filter grayscale hover:grayscale-0 hover:brightness-110 transition-all duration-300">
+                  <img
+                    className="h-12 w-fit max-w-28 transition-transform duration-300 hover:scale-110 rounded-md"
+                    alt={tech.name}
+                    width="auto"
+                    src={tech.logo}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Features Section */}
         <section id="features" className="py-16 px-4 md:px-8 lg:px-16 bg-secondary/20">
           <div className="max-w-6xl mx-auto">
@@ -155,8 +182,6 @@ export default function Home() {
           </div>
         </section>
 
-        <ProblemSection />
-        <SolutionSection />
         {/* Pricing Section */}
         <section className="py-16 px-4 md:px-8 lg:px-16">
           <Pricing />
