@@ -120,32 +120,50 @@ export default function Home() {
       />
       <NavbarDemo>
         {/* Hero Section */}
-        <section className="pt-12 pb-12 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center justify-center gap-12">
+        <section className="relative pt-24 pb-32 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center justify-center gap-16 overflow-hidden">
+          {/* Background gradient effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20 -z-10" />
+          
           {/* Left: Hero Heading, Description, CTA */}
-          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200 leading-tight">
-              Talk to Your Calendar
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-              Connect your Google Calendar and manage your schedule using natural language. Create, modify, and query events just by chatting—no more forms, no more hassle.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto justify-center lg:justify-start">
-              <Link href="/connect" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium text-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
-                Connect Google Calendar
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 leading-tight">
+                Talk to Your Calendar
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                Connect your Google Calendar and manage your schedule using natural language. Create, modify, and query events just by chatting—no more forms, no more hassle.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-6 w-full lg:w-auto justify-center lg:justify-start">
+              <Link 
+                href="/connect" 
+                className="group relative bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-xl font-medium text-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10">Connect Google Calendar</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
-              <Link href="#demo" className="bg-secondary text-foreground hover:bg-secondary/80 px-8 py-3 rounded-md font-medium text-lg border border-primary/20 transition-all">
-                See Demo
+              <Link 
+                href="#demo" 
+                className="group relative bg-secondary text-foreground hover:bg-secondary/80 px-8 py-4 rounded-xl font-medium text-lg border border-primary/20 transition-all duration-300"
+              >
+                <span className="relative z-10">See Demo</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
               </Link>
             </div>
           </div>
+          
           {/* Right: Chat Demo */}
           <div className="flex-1 flex justify-center w-full">
-            <div className="w-full max-w-xl bg-background border border-muted rounded-2xl shadow-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-center">How it works</h3>
-              <div className="space-y-4">
+            <div className="w-full max-w-xl bg-background/80 backdrop-blur-sm border border-muted rounded-2xl shadow-xl p-8 mb-8 transform hover:scale-[1.02] transition-transform duration-300">
+              <h3 className="text-2xl font-semibold mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">How it works</h3>
+              <div className="space-y-6">
                 {chatDemo.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                    <div className={`rounded-xl px-4 py-2 max-w-[80%] ${msg.role === "user" ? "bg-blue-100 text-blue-900" : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"}`}>
+                    <div className={`rounded-2xl px-6 py-3 max-w-[85%] shadow-sm ${
+                      msg.role === "user" 
+                        ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white" 
+                        : "bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100"
+                    }`}>
                       <span className="font-medium">{msg.role === "user" ? "You" : "CalAssist"}:</span> {msg.text}
                     </div>
                   </div>
